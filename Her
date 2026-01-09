@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💗 Valentine 💗</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #ffe6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      max-width: 500px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    h1, p {
+      color: #ff4d88;
+    }
+
+    .next {
+      margin-top: 30px;
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      position: relative;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background-color: #ff4d88;
+      color: white;
+      margin-right: 20px;
+    }
+
+    #noBtn {
+      background-color: #ccc;
+      position: absolute;
+    }
+
+    .dudu {
+      font-size: 120px;
+      animation: jump 1s infinite;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: pink;
+      animation: floatUp 2s ease-out forwards;
+    }
+
+    @keyframes jump {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes floatUp {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-80px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page active">
+    <h1>Hiii babbyy 💗</h1>
+    <div class="next" onclick="nextPage()">➡️</div>
+  </div>
+
+  <div class="page">
+    <p>
+      Soooo, I just wanted to say that, you're like sooo pretty and kind (i have the biggest crush on you)
+      You have such a wholesome soul, and I really like hanging out with you.
+      You're the most fun person i know !! (Cool girl tings haha)
+    </p>
+    <div class="next" onclick="nextPage()">➡️</div>
+  </div>
+
+  <div class="page">
+    <p>Okay, i'ma shoot my shot now ...</p>
+    <div class="next" onclick="nextPage()">➡️</div>
+  </div>
+
+  <div class="page">
+    <p>
+      So uhm... like, I know you're super duper busy, and you probably have all
+      sorts of really cool places to be, and really awesome people to hang out
+      with, and like, I totally understand if you're already booked but I was
+      wondering ...
+    </p>
+    <div class="next" onclick="nextPage()">➡️</div>
+  </div>
+
+  <div class="page">
+    <h1>Do you want to be my Valentine this year? 👉🏼👈🏼</h1>
+    <div class="buttons">
+      <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+      <button id="noBtn" onmouseover="moveNo()">No 🙈</button>
+    </div>
+  </div>
+
+  <div class="page" id="yesPage">
+    <h1>Yay! Thank you for saying Yess 💗</h1>
+    <h2>I Love You!! ❤️</h2>
+    <div class="dudu">🐻</div>
+  </div>
+
+  <script>
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+
+    function nextPage() {
+      pages[currentPage].classList.remove('active');
+      currentPage++;
+      pages[currentPage].classList.add('active');
+    }
+
+    function moveNo() {
+      const noBtn = document.getElementById('noBtn');
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function yesClicked() {
+      pages[currentPage].classList.remove('active');
+      document.getElementById('yesPage').classList.add('active');
+      createHearts();
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '💗';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = '70%';
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
+    }
+  </script>
+
+</body>
+</html>
